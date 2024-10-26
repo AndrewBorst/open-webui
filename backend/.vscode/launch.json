@@ -1,0 +1,23 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python Debugger: FastAPI",
+            "type": "python",
+            "request": "launch",
+            "module": "uvicorn",
+            "args": [
+                "open_webui.main:app", // Adjust this to the correct module and app instance
+                "--host", "0.0.0.0",
+                "--port", "8080",
+                "--reload"
+            ],
+            "jinja": true,
+            "env": {
+                "WEBUI_SECRET_KEY": "${env:WEBUI_SECRET_KEY}",
+                "WEBUI_JWT_SECRET_KEY": "${env:WEBUI_JWT_SECRET_KEY}"
+            },
+            "pythonPath": "/home/aborst/miniconda3/envs/open-webui/bin/python" // Ensure this points to your Python interpreter
+        }
+    ]
+}

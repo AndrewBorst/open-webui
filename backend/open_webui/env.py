@@ -27,7 +27,10 @@ print(BASE_DIR)
 try:
     from dotenv import find_dotenv, load_dotenv
 
-    load_dotenv(find_dotenv(str(BASE_DIR / ".env")))
+    dotenv_path = find_dotenv(str(BASE_DIR / ".env"))
+    print(f"Loading .env file from: {dotenv_path}")
+    load_dotenv(dotenv_path)    
+    # load_dotenv(find_dotenv(str(BASE_DIR / ".env")))
 except ImportError:
     print("dotenv not installed, skipping...")
 
@@ -326,11 +329,13 @@ WEBUI_AUTH_TRUSTED_NAME_HEADER = os.environ.get("WEBUI_AUTH_TRUSTED_NAME_HEADER"
 ####################################
 
 WEBUI_SECRET_KEY = os.environ.get(
-    "WEBUI_SECRET_KEY",
+    "TEST_SECRET_KEY",
     os.environ.get(
         "WEBUI_JWT_SECRET_KEY", "t0p-s3cr3t"
     ),  # DEPRECATED: remove at next major version
 )
+print(f"WEBUI_SECRET_KEY from env: {os.environ.get('WEBUI_SECRET_KEY')}")
+log.info(f"WEBUI_SECRET_KEY: {WEBUI_SECRET_KEY}")
 
 WEBUI_SESSION_COOKIE_SAME_SITE = os.environ.get(
     "WEBUI_SESSION_COOKIE_SAME_SITE",
